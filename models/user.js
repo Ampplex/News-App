@@ -4,23 +4,21 @@ const { createTokenForUser } = require("../services/auth");
 
 const userSchema = new mongoose.Schema(
   {
-    username: {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
       type: String,
       required: true,
       unique: true,
-      minlength: 3,
-      maxlength: 20,
     },
     password: {
       type: String,
       required: true,
-      minlength: 8,
-      maxlength: 100,
     },
     salt: {
       type: String,
-      required: true,
-      select: false,
     },
   },
   { timestamps: true }
@@ -65,3 +63,5 @@ userSchema.static(
 );
 
 const User = mongoose.model("users", userSchema);
+
+module.exports = { User };
