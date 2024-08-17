@@ -1,0 +1,11 @@
+version: '4'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    environment:
+      - MONGO_URL=mongodb+srv://ankesh3905222:Ankesh1234@cluster0.zq4hw.mongodb.net/Users
+      - PORT=8080
