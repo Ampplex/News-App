@@ -50,4 +50,24 @@ const handleLoginUser = async (req, res) => {
   }
 };
 
-module.exports = { handleLoginUser, handleCreateNewUser };
+const handleGetArticles = async (req, res) => {
+  const category = req.params.category;
+
+  const url = `https://newsapi.org/v2/everything?q=${category}&from=2024-07-28&sortBy=publishedAt&apiKey=49490b8a2fed496ebfc5a63a7ca3a96f`;
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return res.status(200).json({ data });
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    return res.status(500).json({ msg: "Internal server error" });
+  }
+};
+
+module.exports = { handleLoginUser, handleCreateNewUser, handleGetArticles };
