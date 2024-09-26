@@ -21,13 +21,13 @@ connectMongoDB(process.env.MONGO_URL).then(() => {
 // Middleware - Plugin
 app.use(express.urlencoded({ extended: false }));
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
 const cors = require('cors');
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public", "index.html"));
+// });
 
 app.use("/api/users", userRouter);
 
