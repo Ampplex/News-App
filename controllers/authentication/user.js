@@ -52,8 +52,9 @@ const handleLoginUser = async (req, res) => {
 
 const handleGetArticles = async (req, res) => {
   const category = req.params.category;
+  const date = new Date();
 
-  const url = `https://newsapi.org/v2/everything?q=${category}&from=2024-07-28&sortBy=publishedAt&apiKey=49490b8a2fed496ebfc5a63a7ca3a96f`;
+  const url = `https://newsapi.org/v2/everything?q=${category}&from=${date.getFullYear()}-${date.getMonth()}-${date.getDate()}&sortBy=publishedAt&apiKey=49490b8a2fed496ebfc5a63a7ca3a96f`;
 
   try {
     const response = await fetch(url);
